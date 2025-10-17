@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOE - Volaille Congelée de Qualité</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-gray: #4a5568;
+            --secondary-gray: #718096;
+            --light-gray: #f7fafc;
+            --dark-gray: #2d3748;
+            --accent-color: #4a5568;
+            --light-accent: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--dark-gray), var(--primary-gray));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            color: var(--secondary-gray);
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: var(--secondary-gray);
+            margin-bottom: 20px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .product-features li {
+            padding: 5px 0;
+            color: var(--secondary-gray);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .product-cta {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .product-cta:hover {
+            background: #2d3748;
+        }
+
+        /* Quality Section */
+        .quality {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .quality-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .quality-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .quality-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+
+        .quality-item p {
+            color: var(--secondary-gray);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .process-steps:before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-color);
+            z-index: 1;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+
+        .process-step p {
+            color: var(--secondary-gray);
+            padding: 0 15px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            width: 30px;
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .copyright {
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--light-accent);
+        }
+
+        /* Live Chat */
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(74, 85, 104, 0.5);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(74, 85, 104, 0.7);
+        }
+
+        .chat-box {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: var(--dark-gray);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chat-body {
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .bot-message {
+            background: var(--light-gray);
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background: var(--light-accent);
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .send-button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .process-steps:before {
+                display: none;
+            }
+            
+            .chat-box {
+                width: 300px;
+                right: 15px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">NOE</div>
+            <div class="tagline">Fournisseur de produits de volaille congelés de qualité supérieure depuis 2010</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Volaille Congelée de Qualité Supérieure</h1>
+                <p class="hero-text">NOE est spécialisé dans la fourniture de cuisses et ailes de poulet congelés de première qualité. Nos produits sont soigneusement sélectionnés et surgelés rapidement pour préserver leur fraîcheur, leurs nutriments et leurs saveurs naturelles.</p>
+                <p class="hero-text">Nous travaillons avec les meilleurs éleveurs locaux et européens qui partagent notre engagement envers le bien-être animal et les pratiques d'élevage durable.</p>
+                <button class="product-cta">En savoir plus sur nos produits</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1587332278433-9742aa62d1da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Produits de volaille congelés">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Notre Gamme de Produits</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Cuisses de poulet">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Cuisses de Poulet</h3>
+                        <p class="product-description">Nos cuisses de poulet sont issues d'élevages responsables et surgelées rapidement après transformation pour préserver leur qualité exceptionnelle.</p>
+                        <ul class="product-features">
+                            <li>Élevage en plein air</li>
+                            <li>Alimentation 100% végétale</li>
+                            <li>Sans antibiotiques promoteurs de croissance</li>
+                            <li>Conditionnement sous vide professionnel</li>
+                            <li>Disponible en portions de 1kg, 2kg et 5kg</li>
+                        </ul>
+                        <button class="product-cta">Demander des informations</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1599487488170-d11d9e897b44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ailes de poulet">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Ailes de Poulet</h3>
+                        <p class="product-description">Nos ailes de poulet sont parfaitement portionnées et idéales pour toutes vos préparations culinaires, des grillades aux plats en sauce.</p>
+                        <ul class="product-features">
+                            <li>Portions régulières et uniformes</li>
+                            <li>Peau fine et croustillante à la cuisson</li>
+                            <li>Idéal pour les professionnels de la restauration</li>
+                            <li>Convient également aux particuliers exigeants</li>
+                            <li>Disponible en portions de 1kg, 2kg et 5kg</li>
+                        </ul>
+                        <button class="product-cta">Demander des informations</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Mélange cuisses et ailes">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Mélange Cuisses & Ailes</h3>
+                        <p class="product-description">Notre sélection spéciale combine cuisses et ailes de poulet pour offrir une variété de textures et de saveurs dans un même conditionnement.</p>
+                        <ul class="product-features">
+                            <li>Rapport qualité-prix optimal</li>
+                            <li>Parfait pour les menus variés</li>
+                            <li>Économique pour les grandes quantités</li>
+                            <li>Idéal pour les collectivités et restaurants</li>
+                            <li>Disponible en portions de 2kg, 5kg et 10kg</li>
+                        </ul>
+                        <button class="product-cta">Demander des informations</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Section -->
+    <section class="quality">
+        <div class="container">
+            <h2 class="section-title">Notre Engagement Qualité</h2>
+            <div class="quality-grid">
+                <div class="quality-item">
+                    <div class="quality-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Élevage Responsable</h3>
+                    <p>Nos volailles sont élevées en plein air avec une alimentation 100% végétale, sans OGM et sans antibiotiques promoteurs de croissance.</p>
+                </div>
+                <div class="quality-item">
+                    <div class="quality-icon"><i class="fas fa-snowflake"></i></div>
+                    <h3>Surgélation Expert</h3>
+                    <p>Nous utilisons une technologie de surgélation rapide à -35°C qui préserve la texture, les nutriments et les saveurs naturelles des produits.</p>
+                </div>
+                <div class="quality-item">
+                    <div class="quality-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Chaîne du Froid Maîtrisée</h3>
+                    <p>Notre logistique garantit le maintien à -18°C tout au long du transport avec un monitoring permanent de la température.</p>
+                </div>
+                <div class="quality-item">
+                    <div class="quality-icon"><i class="fas fa-award"></i></div>
+                    <h3>Certifications</h3>
+                    <p>Nos processus respectent les normes internationales les plus strictes (ISO 22000, HACCP) et sont régulièrement audités.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">Notre Processus de Production</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Sélection Rigoureuse</h3>
+                    <p>Nous travaillons exclusivement avec des éleveurs partenaires qui respectent nos critères stricts de bien-être animal et de qualité.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Transformation Expert</h3>
+                    <p>Nos produits sont transformés dans des ateliers certifiés suivant des procédures d'hygiène et de qualité rigoureuses.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Surgélation Rapide</h3>
+                    <p>La surgélation intervient dans les heures qui suivent la transformation pour préserver toute la fraîcheur et les qualités nutritionnelles.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Contrôle Qualité</h3>
+                    <p>Chaque lot est soumis à des contrôles qualité stricts avant son conditionnement et son expédition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-Nous</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informations de Contact</h3>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-phone"></i> +(509) 33 22 0000</li>
+                        <li><i class="fas fa-envelope"></i> contact@noe-poultry.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Delmas 75, Port-au-Prince, Haïti</li>
+                        <li><i class="fas fa-clock"></i> Lun-Ven: 8h-18h | Sam: 9h-13h</li>
+                    </ul>
+                </div>
+                <div class="contact-info">
+                    <h3>Pour les Professionnels</h3>
+                    <p>Nous proposons des conditions spéciales pour les restaurateurs, traiteurs, hôtels et collectivités. Notre équipe commerciale est à votre disposition pour étudier vos besoins spécifiques et vous proposer une offre personnalisée.</p>
+                    <p>Contactez-nous pour obtenir des informations détaillées sur nos produits, nos disponibilités et nos conditions tarifaires.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">© 2023 NOE - Tous droits réservés</div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat -->
+    <div class="chat-button" id="chatButton">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <h3>Service Client NOE</h3>
+            <button class="close-chat" id="closeChat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message bot-message">
+                Bonjour ! Je suis l'assistant NOE. Comment puis-je vous aider aujourd'hui ? Je peux vous renseigner sur nos produits, nos disponibilités et nos tarifs.
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Tapez votre message...">
+            <button class="send-button" id="sendButton"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        // Live Chat Functionality
+        const chatButton = document.getElementById('chatButton');
+        const chatBox = document.getElementById('chatBox');
+        const closeChat = document.getElementById('closeChat');
+        const chatBody = document.getElementById('chatBody');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+
+        // Open chat
+        chatButton.addEventListener('click', () => {
+            chatBox.style.display = 'block';
+        });
+
+        // Close chat
+        closeChat.addEventListener('click', () => {
+            chatBox.style.display = 'none';
+        });
+
+        // Send message
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('chat-message', 'user-message');
+                userMessage.textContent = message;
+                chatBody.appendChild(userMessage);
+                
+                // Clear input
+                chatInput.value = '';
+                
+                // Scroll to bottom
+                chatBody.scrollTop = chatBody.scrollHeight;
+                
+                // Simulate bot response after a delay
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('chat-message', 'bot-message');
+                    
+                    // Simple response logic
+                    if (message.toLowerCase().includes('prix') || message.toLowerCase().includes('tarif') || message.toLowerCase().includes('cout')) {
+                        botMessage.textContent = "Nos tarifs varient selon la quantité commandée et votre statut (professionnel ou particulier). Pouvez-vous me préciser vos besoins pour que je puisse vous donner une estimation précise ?";
+                    } else if (message.toLowerCase().includes('commande') || message.toLowerCase().includes('acheter') || message.toLowerCase().includes('achat')) {
+                        botMessage.textContent = "Je peux vous aider à passer commande. Pour cela, j'aurai besoin de connaître la quantité souhaitée, le produit spécifique et vos coordonnées. Souhaitez-vous que je vous transmette à un conseiller commercial ?";
+                    } else if (message.toLowerCase().includes('livraison') || message.toLowerCase().includes('delai') || message.toLowerCase().includes('expédition')) {
+                        botMessage.textContent = "Nous livrons généralement sous 48h pour les professionnels. Les délais peuvent varier selon votre localisation et la quantité commandée. Où souhaitez-vous être livré ?";
+                    } else if (message.toLowerCase().includes('disponibilité') || message.toLowerCase().includes('stock')) {
+                        botMessage.textContent = "Nous maintenons généralement des stocks importants de tous nos produits. Pour connaître les disponibilités exactes, je peux vérifier avec notre service logistique. Quel produit vous intéresse particulièrement ?";
+                    } else {
+                        botMessage.textContent = "Merci pour votre message. Un de nos conseillers vous répondra rapidement. En attendant, puis-je vous aider avec des informations sur nos produits, nos processus de qualité ou nos conditions de vente ?";
+                    }
+                    
+                    chatBody.appendChild(botMessage);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Product information buttons
+        document.querySelectorAll('.product-cta').forEach(button => {
+            button.addEventListener('click', function() {
+                chatBox.style.display = 'block';
+                setTimeout(() => {
+                    const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                    
+                    const userMessage = document.createElement('div');
+                    userMessage.classList.add('chat-message', 'user-message');
+                    userMessage.textContent = `Je souhaite des informations sur ${productName}`;
+                    chatBody.appendChild(userMessage);
+                    
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('chat-message', 'bot-message');
+                    botMessage.textContent = `Très bon choix ! ${productName} est l'un de nos produits les plus appréciés. Je peux vous donner tous les détails sur ce produit, ses caractéristiques, ses disponibilités et nos tarifs. Avez-vous une question spécifique ?`;
+                    chatBody.appendChild(botMessage);
+                    
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
